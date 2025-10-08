@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slick UI - Premium UI Kit</title>
+    <link href="https://fonts.gossogleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #bfbfbf;
+            --accent-border: rgba(255, 255, 255, 0.45);
+            --text: #fff;
+            --active-bg: #fff;
+            --active-text: #222;
+            --pill-radius: 8px;
+            --pill-padding: 8px 18px;
+            --gap: 14px;
+            --font: 13px/1 "Helvetica Neue", Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                linear-gradient(120deg, rgba(106, 0, 244, 0.85), rgba(212, 20, 90, 0.85), rgba(255, 111, 97, 0.85), rgba(33, 150, 243, 0.85)),
+                url('https://images.unsplash.com/photo-1558655146-364adaf1fcc9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2064&q=80') center/cover no-repeat;
+            background-size: 400% 400%, cover;
+            animation: gradientShift 12s ease infinite;
+            z-index: -2;
+        }
+
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 70%;
+            left: 80%;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 40%;
+            left: 85%;
+            animation-delay: 4s;
+        }
+
+        .shape:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            top: 80%;
+            left: 15%;
+            animation-delay: 6s;
+        }
+
+        .shape:nth-child(5) {
+            width: 70px;
+            height: 70px;
+            top: 20%;
+            left: 70%;
+            animation-delay: 8s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            25% {
+                transform: translateY(-20px) rotate(90deg);
+            }
+
+            50% {
+                transform: translateY(0) rotate(180deg);
+            }
+
+            75% {
+                transform: translateY(20px) rotate(270deg);
+            }
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-position: 0% 50%, center;
+            }
+
+            50% {
+                background-position: 100% 50%, center;
+            }
+
+            100% {
+                background-position: 0% 50%, center;
+            }
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #ffccff;
+        }
+
+        .purchase-btn {
+            background: #e60039;
+            padding: 10px 18px;
+            border-radius: 25px;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .purchase-btn:hover {
+            background: #ff004c;
+        }
+
+        .hero {
+            text-align: center;
+            margin-top: 100px;
+            padding: 0 20px;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        .hero h1 {
+            font-size: 54px;
+            font-weight: 300;
+        }
+
+        .hero h1 span {
+            font-weight: 700;
+            color: #ffccff;
+        }
+
+        .hero p {
+            margin-top: 20px;
+            font-size: 20px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+            color: #f3f3f3;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* BENEFITS SECTION */
+        .benefits {
+            padding: 80px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin-top: 60px;
+        }
+
+        .benefits-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1000px;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 30px;
+            width: 280px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .benefit-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+
+        .benefit-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .benefit-card p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* ACTION BUTTONS SECTION */
+        .action-buttons {
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            padding: 16px 32px;
+            border-radius: 30px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            text-align: center;
+            min-width: 200px;
+        }
+
+        .primary-btn {
+            background: #e60039;
+            color: white;
+            border: 2px solid #e60039;
+        }
+
+        .primary-btn:hover {
+            background: #ff004c;
+            border-color: #ff004c;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .secondary-btn {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .secondary-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* FILTER SECTION */
+        .filter-section {
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .filter-wrap {
+            max-width: 900px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--gap);
+            align-items: center;
+            justify-content: center;
+            padding: 18px 10px;
+        }
+
+        .filter-btn {
+            -webkit-appearance: none;
+            appearance: none;
+            border: 2px solid var(--accent-border);
+            background: transparent;
+            color: var(--text);
+            border-radius: var(--pill-radius);
+            padding: var(--pill-padding);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 160ms ease;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset;
+        }
+
+        .filter-btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.07);
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: var(--active-bg);
+            color: var(--active-text);
+            border-color: rgba(0, 0, 0, 0.08);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        .filter-btn.small {
+            padding: 6px 12px;
+            font-size: 11px;
+        }
+
+        .image-section {
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            max-width: 1000px;
+        }
+
+        .image-container img {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-container img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+        }
+
+        /* GRID LAYOUT SECTION */
+        .grid-section {
+            padding: 60px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: 100px 50px 1fr 1fr 80px;
+            grid-template-areas:
+                "header header header header"
+                "nav nav nav nav"
+                "aside aside content content"
+                "aside aside sec sec"
+                "foot foot foot foot";
+            width: 100%;
+            max-width: 1000px;
+            height: 500px;
+            gap: 10px;
+        }
+
+        .grid-container>div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: white;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .grid-header {
+            grid-area: header;
+            background-color: rgba(0, 255, 255, 0.7);
+        }
+
+        .grid-nav {
+            grid-area: nav;
+            background-color: rgba(0, 128, 0, 0.7);
+        }
+
+        .grid-aside {
+            grid-area: aside;
+            background-color: rgba(255, 165, 0, 0.7);
+        }
+
+        .grid-content {
+            grid-area: content;
+            background-color: rgba(0, 0, 255, 0.7);
+        }
+
+        .grid-sec {
+            grid-area: sec;
+            background-color: rgba(128, 0, 128, 0.7);
+        }
+
+        .grid-footer {
+            grid-area: foot;
+            background-color: rgba(128, 128, 128, 0.7);
+        }
+
+        /* FOOTER SECTION */
+        footer {
+            padding: 80px 20px 20px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.3);
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            gap: 40px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            text-align: left;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #ffccff;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: #ffccff;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: #ffccff;
+            transform: translateX(5px);
+        }
+
+        .footer-contact p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            color: #bdc3c7;
+        }
+
+        .footer-contact i {
+            margin-right: 10px;
+            color: #ffccff;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+        }
+
+        .social-icon:hover {
+            background-color: #ffccff;
+            color: #333;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #95a5a6;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-bottom a {
+            color: #ffccff;
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+
+        .newsletter-form {
+            display: flex;
+            margin-top: 15px;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .newsletter-input::placeholder {
+            color: #bdc3c7;
+        }
+
+        .newsletter-btn {
+            background: #e60039;
+            color: white;
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .newsletter-btn:hover {
+            background: #ff004c;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            nav ul {
+                justify-content: center;
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: 80px 50px 150px 150px 150px 80px;
+                grid-template-areas:
+                    "header"
+                    "nav"
+                    "aside"
+                    "content"
+                    "sec"
+                    "foot";
+                height: auto;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .footer-section {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .filter-wrap {
+                gap: 10px;
+                padding: 12px;
+            }
+
+            .filter-btn {
+                padding: 6px 12px;
+                font-size: 11px;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .newsletter-input,
+            .newsletter-btn {
+                border-radius: 4px;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 2D Animation Elements -->
+    <div class="floating-shapes">
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+        <div class="shape"></div>
+    </div>
+
+    <header>
+        <div class="logo">
+            <div
+                style="height: 60px; width: 60px; background: rgba(255,255,255,0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                <span style="font-size: 24px;">SL</span>
+            </div>
+            <span>Slick UI</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Pages</a></li>
+                <li><a href="#">All Blocks</a></li>
+                <li><a href="#">Components</a></li>
+                <li><a href="#">Docs</a></li>
+                <li><a href="#">Sitemap</a></li>
+                <li><a href="#">Generator</a></li>
+                <li><a href="#" class="purchase-btn">PURCHASE</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Start with <span>Excellence</span></h1>
+        <p>
+            What you create is who you are. Slick is designed for the people who have the love
+            for excellence, believe in excellence and love to create impressive things that stand
+            out. Here is more than 172 ready to use elegant UI blocks to start with.
+        </p>
+    </section>
+
+    <section class="filter-section">
+        <div class="filter-wrap" role="toolbar" aria-label="Sections">
+            <button class="filter-btn active" aria-pressed="true">All</button>
+            <button class="filter-btn">Navigation</button>
+            <button class="filter-btn">Header</button>
+            <button class="filter-btn">Features</button>
+            <button class="filter-btn">Content</button>
+            <button class="filter-btn">Team</button>
+            <button class="filter-btn">CTA</button>
+            <button class="filter-btn small">Gallery</button>
+            <button class="filter-btn">Forms</button>
+            <button class="filter-btn">Partners</button>
+            <button class="filter-btn">Testimonials</button>
+            <button class="filter-btn">Pricing</button>
+            <button class="filter-btn">Contact</button>
+            <button class="filter-btn">Footer</button>
+        </div>
+    </section>
+
+    <section class="image-section">
+        <div class="image-container">
+            <img src="C:\Users\user\Downloads\header-1.jpg" alt="header-1.jpg">
+            <img src="C:\Users\user\Downloads\Intuitive codes make it.jpg" alt="Intuitive codes make it.jpg">
+            <img src="C:\Users\user\Downloads\header-3.jpg" alt="header-3.jpg">
+        </div>
+    </section>
+    <section class="image-section">
+        <div class="image-container">
+            <img src="C:\Users\user\Downloads\header-4.jpg" alt="header-4.jpg">
+            <img src="C:\Users\user\Downloads\header-5.jpg" alt="header-5.jpg">
+            <img src="C:\Users\user\Downloads\header-6.jpg" alt="header-6.jpg">
+        </div>
+    </section>
+    <section class="image-section">
+        <div class="image-container">
+            <img src="C:\Users\user\Downloads\header-7.jpg" alt="header-7.jpg">
+            <img src="C:\Users\user\Downloads\header-8.jpg" alt="header-8.jpg">
+            <img src="C:\Users\user\Downloads\header-9.jpg" alt="header-9.jpg">
+        </div>
+    </section>
+    <section class="image-section">
+        <div class="image-container">
+            <img src="C:\Users\user\Downloads\header-10.jpg" alt="header-10.jpg">
+            <img src="C:\Users\user\Downloads\header-11.jpg" alt="header-11.jpg">
+            <img src="C:\Users\user\Downloads\header-12.jpg" alt="header-12.jpg">
+        </div>
+    </section>
+    <section class="image-section">
+        <div class="image-container">
+            <img src="C:\Users\user\Downloads\header-13.jpg" alt="header-13.jpg">
+            <img src="C:\Users\user\Downloads\header-14.jpg" alt="header-14.jpg">
+            <img src="C:\Users\user\Downloads\header-15.jpg" alt="header-15.jpg">
+        </div>
+    </section>
+    <section class="image-section">
+        <div class="image-container">
+            <img src="C:\Users\user\Downloads\header-17.jpg" alt="header-17.jpg">
+            <img src="C:\Users\user\Downloads\header-16.jpg" alt="header-16.jpg">
+        </div>
+    </section>
+
+
+    <section class="benefits">
+        <div class="benefits-container">
+            <div class="benefit-card">
+                <div class="benefit-icon">🛡️</div>
+                <h3>NO RISK</h3>
+                <p>We'll give your money back within a 10-day period.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💳</div>
+                <h3>NO SUBSCRIPTIONS</h3>
+                <p>One-time fee. Why pay monthly when you can pay once?</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🌐</div>
+                <h3>UNLIMITED SITES</h3>
+                <p>Lifetime license. Build unlimited sites at no additional cost!</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="action-buttons">
+        <a href="#" class="action-btn primary-btn">TRY GENERATOR</a>
+        <a href="#" class="action-btn secondary-btn">EXPLORE BLOCKS</a>
+    </section>
+
+    <!-- Enhanced Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Navigation</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Pages</a></li>
+                    <li><a href="#">All Blocks</a></li>
+                    <li><a href="#">Components</a></li>
+                    <li><a href="#">Sitemap Generator</a></li>
+                    <li><a href="#">Purchase</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Tutorials</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Support Center</a></li>
+                    <li><a href="#">Community</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <div class="footer-contact">
+                    <p><i>📍</i> 123 Design Street, Creative City</p>
+                    <p><i>📞</i> +1 (555) 123-4567</p>
+                    <p><i>✉️</i> info@slickexample.com</p>
+                </div>
+                <div class="footer-social">
+                    <a href="#" class="social-icon">f</a>
+                    <a href="#" class="social-icon">t</a>
+                    <a href="#" class="social-icon">in</a>
+                    <a href="#" class="social-icon">ig</a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get updates on new components and features.</p>
+                <form class="newsletter-form">
+                    <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                    <button type="submit" class="newsletter-btn">Subscribe</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Slick. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of
+                    Service</a></p>
+        </div>
+    </footer>
+</body>
+
+</html>
