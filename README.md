@@ -1,0 +1,2 @@
+# strick.html
+html/css
