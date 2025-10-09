@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Filter Tags UI</title>
+    <style>
+        :root {
+            --bg: #bfbfbf;
+            --accent-border: rgba(255, 255, 255, 0.45);
+            --text: #fff;
+            --active-bg: #fff;
+            --active-text: #222;
+            --pill-radius: 8px;
+            --pill-padding: 8px 18px;
+            --gap: 14px;
+            --font: 13px/1 "Helvetica Neue", Arial, sans-serif;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            font: var(--font);
+            background: linear-gradient(180deg, #bdbdbd 0%, #aeadad 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            padding: 40px 20px;
+        }
+
+        /* Container that holds the filter chips */
+        .filter-wrap {
+            max-width: 900px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--gap);
+            align-items: center;
+            justify-content: center;
+            padding: 18px 10px;
+        }
+
+        /* Pill style */
+        .filter-btn {
+            -webkit-appearance: none;
+            appearance: none;
+            border: 2px solid var(--accent-border);
+            background: transparent;
+            color: var(--text);
+            border-radius: var(--pill-radius);
+            padding: var(--pill-padding);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 160ms ease;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset;
+        }
+
+        .filter-btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.07);
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Active (selected) pill */
+        .filter-btn.active {
+            background: var(--active-bg);
+            color: var(--active-text);
+            border-color: rgba(0, 0, 0, 0.08);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Smaller pills if needed (eg. footer) */
+        .filter-btn.small {
+            padding: 6px 12px;
+            font-size: 11px;
+        }
+
+        /* Responsive: center on small screens */
+        @media (max-width:520px) {
+            .filter-wrap {
+                gap: 10px;
+                padding: 12px;
+            }
+
+            .filter-btn {
+                padding: 6px 12px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="filter-wrap" role="toolbar" aria-label="Sections">
+        <button class="filter-btn active" aria-pressed="true">All</button>
+        <button class="filter-btn">Navigation</button>
+        <button class="filter-btn">Header</button>
+        <button class="filter-btn">Features</button>
+        <button class="filter-btn">Content</button>
+        <button class="filter-btn">Team</button>
+        <button class="filter-btn">CTA</button>
+        <button class="filter-btn small">Gallery</button>
+
+        <button class="filter-btn">Forms</button>
+        <button class="filter-btn">Partners</button>
+        <button class="filter-btn">Testimonials</button>
+        <button class="filter-btn">Pricing</button>
+        <button class="filter-btn">Contact</button>
+        <button class="filter-btn">Footer</button>
+    </div>
+
+</body>
+
+</html>
